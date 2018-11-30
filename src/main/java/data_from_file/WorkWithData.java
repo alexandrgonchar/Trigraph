@@ -9,7 +9,7 @@ public class WorkWithData {
 
     public WorkWithData(List<String> lines) {
         for (String line : lines) {
-            addTrigraphFromLine(line);
+            if (line != null) addTrigraphFromLine(line);
         }
 
         fillMap();
@@ -20,10 +20,7 @@ public class WorkWithData {
             StringBuilder build = new StringBuilder();
 
             if (line.charAt(i) != ' ') {
-                build.append(line.charAt(i));
-                build.append(line.charAt(i + 1));
-                build.append(line.charAt(i + 2));
-
+                build.append(line.substring(i, i + 3));
                 trigraph.add(build.toString());
             }
         }
@@ -43,5 +40,13 @@ public class WorkWithData {
         for (Map.Entry<String, Integer> entry : trigraphMap.entrySet()) {
             System.out.println(entry.getKey() + " = " + entry.getValue());
         }
+    }
+
+    public ArrayList<String> getTrigraph () {
+        return trigraph;
+    }
+
+    public Map<String, Integer> getTrigraphMap() {
+        return trigraphMap;
     }
 }
